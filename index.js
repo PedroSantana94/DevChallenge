@@ -1,6 +1,5 @@
 const fs = require('fs');
 const csv = require('fast-csv');
-const _ = require('lodash');
 const validator = require('validator');
 
 let dados = [];
@@ -60,6 +59,10 @@ fs.createReadStream('input.csv')
             objOut['addresses'] = [];
 
             aux['emailPai'] = nomes[3].split(' ');
+
+            //console.log(objetoCompleto[index][nomes[3]].split('/')[0]);
+
+            objetoCompleto[index][nomes[3]] = objetoCompleto[index][nomes[3]].split('/')[0];
 
             if (objetoCompleto[index][nomes[3]] != '' && validator.isEmail(objetoCompleto[index][nomes[3]]) == true){
             objAux['addressesEmailPai'] = [{"type": aux['emailPai'][0], "tag": [aux['emailPai'][1].replace(',',''), aux['emailPai'][2]], "address": objetoCompleto[index][nomes[3]]}];
